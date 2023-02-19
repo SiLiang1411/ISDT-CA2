@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class patrolState : StateMachineBehaviour
 {
+    Transform player;
+    float chaseRange = 2;
     float timer;
     GameObject go;
     List<Transform> wayPoints = new List<Transform>();
@@ -12,7 +14,9 @@ public class patrolState : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = animator.GetComponent<NavMeshAgent>();
+        agent.speed = 0.2f;
        timer=0;
        go = GameObject.FindGameObjectWithTag("WayPoints");
        foreach (Transform t in go.transform)
@@ -29,6 +33,10 @@ public class patrolState : StateMachineBehaviour
         timer += Time.deltaTime;
         if(timer > 10)
             animator.SetBool("isPatrolling",false);
+
+            float distance = Vector3.Distance(player.position,animator.transform.position);
+        if (distance < chaseRange)
+        animator.SetBool("isChasing",true);
     }   
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
