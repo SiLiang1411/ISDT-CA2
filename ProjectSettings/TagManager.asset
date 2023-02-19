@@ -13,6 +13,7 @@ TagManager:
   - oilCan
   - bulletHole
   - enemy
+  - ground
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Obstacles
   - 
   - Grab Interactable
   - Player
