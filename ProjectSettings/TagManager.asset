@@ -14,6 +14,7 @@ TagManager:
   - bulletHole
   - enemy
   - ground
+  - WayPoints
   layers:
   - Default
   - TransparentFX
